@@ -1,6 +1,6 @@
 package com.sercanorhangazi.mvvmpractise.searchUser.models
 
-data class İtem(
+data class User(
     val avatar_url: String,
     val events_url: String,
     val followers_url: String,
