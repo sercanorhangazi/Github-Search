@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.sercanorhangazi.mvvmpractise.R
 import com.sercanorhangazi.mvvmpractise.databinding.UserSearchFragmentBinding
+import com.sercanorhangazi.mvvmpractise.searchUser.models.UserSearchResultModel
 import com.sercanorhangazi.mvvmpractise.searchUser.viewModel.SearchUserViewModel
 
 class UserSearchFragment() : Fragment() {
@@ -32,7 +34,19 @@ class UserSearchFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getUserSearchResult()
+        observeUserSearch()
+    }
+
+    private fun observeUserSearch() {
         viewModel.observeUserSearchLiveData()
+            .observe(viewLifecycleOwner, object: Observer<UserSearchResultModel>{
+                override fun onChanged(t: UserSearchResultModel?) {
+                    t?.let {
+                        println("Observing search result. Total: ${t.total_count}")
+                    }
+                }
+
+            })
     }
 
 }
