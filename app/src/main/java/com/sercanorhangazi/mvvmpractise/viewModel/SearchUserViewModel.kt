@@ -33,7 +33,7 @@ class SearchUserViewModel @Inject constructor(
             }
 
             override fun onFailure(call: Call<UserSearchResultModel>, t: Throwable) {
-                println("Couldn't fetch user search result : ${t.message.toString()}")
+                Log.d("DEBUG", "Couldn't fetch user search result : ${t.message.toString()}")
             }
         })
     }

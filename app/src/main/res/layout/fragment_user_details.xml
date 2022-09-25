@@ -5,13 +5,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_demo"
+        android:id="@+id/tv_user_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:gravity="center"
-        android:text="Case Study"
+        android:text="User Details"
         android:textColor="@color/black"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,19 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.sercanorhangazi.mvvmpractise.databinding.UserSearchFragmentBinding
+import com.sercanorhangazi.mvvmpractise.model.User
 import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
 import com.sercanorhangazi.mvvmpractise.viewModel.SearchUserViewModel
+import com.sercanorhangazi.mvvmpractise.viewModel.UserDetailsVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UserSearchFragment() : Fragment() {
+class UserSearchFragment: Fragment() {
 
     private lateinit var binding: UserSearchFragmentBinding
     private val userSearchVM by viewModels<SearchUserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -40,6 +41,7 @@ class UserSearchFragment() : Fragment() {
         binding.tvDemo.setOnClickListener {
             userSearchVM.getUserSearchResult(page = 2)
         }
+
     }
 
     private fun observeUserSearch() {
@@ -53,5 +55,6 @@ class UserSearchFragment() : Fragment() {
 
             })
     }
+
 
 }
