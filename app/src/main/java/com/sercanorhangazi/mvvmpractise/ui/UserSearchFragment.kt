@@ -1,25 +1,26 @@
 package com.sercanorhangazi.mvvmpractise.ui
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.sercanorhangazi.mvvmpractise.R
 import com.sercanorhangazi.mvvmpractise.databinding.UserSearchFragmentBinding
 import com.sercanorhangazi.mvvmpractise.searchUser.models.UserSearchResultModel
 import com.sercanorhangazi.mvvmpractise.searchUser.viewModel.SearchUserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserSearchFragment() : Fragment() {
 
     private lateinit var binding: UserSearchFragmentBinding
-    private lateinit var viewModel: SearchUserViewModel
+    private val userSearchVM by viewModels<SearchUserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[SearchUserViewModel::class.java]
+
     }
 
     override fun onCreateView(
@@ -33,16 +34,20 @@ class UserSearchFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserSearchResult()
+        userSearchVM.getUserSearchResult()
         observeUserSearch()
+
+        binding.tvDemo.setOnClickListener {
+            userSearchVM.getUserSearchResult(page = 2)
+        }
     }
 
     private fun observeUserSearch() {
-        viewModel.observeUserSearchLiveData()
+        userSearchVM.observeUserSearchLiveData()
             .observe(viewLifecycleOwner, object: Observer<UserSearchResultModel>{
                 override fun onChanged(t: UserSearchResultModel?) {
                     t?.let {
-                        println("Observing search result. Total: ${t.total_count}")
+                        println("Observing search result. Total: ${t.total_count} ${t.items[0].login}")
                     }
                 }
 
