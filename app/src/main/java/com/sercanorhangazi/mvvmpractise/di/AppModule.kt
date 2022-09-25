@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise
+package com.sercanorhangazi.mvvmpractise.di
 
 import com.sercanorhangazi.mvvmpractise.retrofit.RetrofitInstance
 import dagger.Module

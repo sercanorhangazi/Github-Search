@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise.searchUser.models
+package com.sercanorhangazi.mvvmpractise.model
 
 data class UserSearchResultModel(
     val incomplete_results: Boolean,

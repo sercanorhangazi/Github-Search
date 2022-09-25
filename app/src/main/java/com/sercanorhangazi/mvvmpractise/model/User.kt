@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise.searchUser.models
+package com.sercanorhangazi.mvvmpractise.model
 
 data class User(
     val avatar_url: String,

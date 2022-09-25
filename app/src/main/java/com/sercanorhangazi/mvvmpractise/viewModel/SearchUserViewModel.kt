@@ -1,11 +1,11 @@
-package com.sercanorhangazi.mvvmpractise.searchUser.viewModel
+package com.sercanorhangazi.mvvmpractise.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sercanorhangazi.mvvmpractise.retrofit.GithubApi
-import com.sercanorhangazi.mvvmpractise.searchUser.models.UserSearchResultModel
+import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback

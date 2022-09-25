@@ -1,6 +1,6 @@
 package com.sercanorhangazi.mvvmpractise.retrofit
 
-import com.sercanorhangazi.mvvmpractise.searchUser.models.UserSearchResultModel
+import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.sercanorhangazi.mvvmpractise.databinding.UserSearchFragmentBinding
-import com.sercanorhangazi.mvvmpractise.searchUser.models.UserSearchResultModel
-import com.sercanorhangazi.mvvmpractise.searchUser.viewModel.SearchUserViewModel
+import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
+import com.sercanorhangazi.mvvmpractise.viewModel.SearchUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
