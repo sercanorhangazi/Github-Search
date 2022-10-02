@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sercanorhangazi.mvvmpractise.model.User
 import com.sercanorhangazi.mvvmpractise.retrofit.GithubApi
 import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,15 +20,35 @@ class SearchUserViewModel @Inject constructor(
 
     private var userSearchLiveData = MutableLiveData<UserSearchResultModel>()
 
-    fun getUserSearchResult(query: String = "sercan", page: Int = 1) {
-        api.getUserSearchResults(query,page).enqueue(object:
-            Callback<UserSearchResultModel> {
+    private var currentQuery = ""
+    private var currentPage = 1
+
+    fun getNextPage() {
+        getUserSearchResult(currentQuery, currentPage+1)
+    }
+
+    fun getUserSearchResult(query: String, page: Int = 1) {
+        Log.d("DEBUG","current query = $currentQuery , current page : $currentPage, query: $query, page : $page")
+
+        if (query == currentQuery && page == currentPage) { return }
+        if (query != currentQuery) {
+            currentQuery = query
+            currentPage = 1
+        }
+        if (query == currentQuery && page != currentPage) {
+            currentPage = page
+        }
+
+        Log.d("DEBUG"," - current query = $currentQuery , current page : $currentPage, query: $query, page : $page")
+
+        api.getUserSearchResults(query, page).enqueue(object: Callback<UserSearchResultModel> {
             override fun onResponse(
                 call: Call<UserSearchResultModel>,
                 response: Response<UserSearchResultModel>
             ) {
                 Log.d("Request url", call.request().url().toString())
                 response.body()?.let { result ->
+                    result.query = currentQuery
                     userSearchLiveData.value = result
                 }
             }

@@ -9,7 +9,7 @@
         android:id="@+id/userSearchFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.sercanorhangazi.mvvmpractise.ui.UserDetailsFragment"
-        />
+        android:name="com.sercanorhangazi.mvvmpractise.ui.UserSearchFragment"
+        tools:layout="@layout/user_search_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
