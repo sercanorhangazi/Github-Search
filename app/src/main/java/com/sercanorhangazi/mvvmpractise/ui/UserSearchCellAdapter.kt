@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sercanorhangazi.mvvmpractise.databinding.UserSearchCellBinding
 import com.sercanorhangazi.mvvmpractise.model.User
 
@@ -42,8 +43,13 @@ class UserSearchCellAdapter(
 
     class UserSearchCell(val binding: UserSearchCellBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindItem(user: User, pos: Int) {
-            val message = "$pos. ${user.login}"
-            binding.tvUsername.text =  message
+
+            binding.apply {
+                Glide.with(this.root).load(user.avatar_url).into(ivAvatar)
+
+                val message = user.login
+                binding.tvUsername.text =  message
+            }
         }
     }
 

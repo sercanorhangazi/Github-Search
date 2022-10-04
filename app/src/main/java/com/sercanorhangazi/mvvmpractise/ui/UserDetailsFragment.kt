@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.sercanorhangazi.mvvmpractise.databinding.FragmentUserDetailsBinding
 import com.sercanorhangazi.mvvmpractise.model.User
 import com.sercanorhangazi.mvvmpractise.model.UserDetail
@@ -57,6 +58,7 @@ class UserDetailsFragment: Fragment() {
 
     private fun setUserDetails(user: UserDetail) {
         binding.apply {
+            Glide.with(this@UserDetailsFragment).load(user.avatar_url).into(ivAvatar)
             tvName.text = user.name
             tvUsername.text = "@${user.login}"
 
