@@ -1,17 +1,16 @@
 package com.sercanorhangazi.mvvmpractise.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.sercanorhangazi.mvvmpractise.R
 import com.sercanorhangazi.mvvmpractise.databinding.UserSearchFragmentBinding
-import com.sercanorhangazi.mvvmpractise.model.User
-import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
 import com.sercanorhangazi.mvvmpractise.viewModel.SearchUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,8 +38,8 @@ class UserSearchFragment: Fragment() {
 
     private fun setupRecyclerView() {
 
-        userSearchAdapter = UserSearchCellAdapter(ArrayList<User>()) {
-            println(it)
+        userSearchAdapter = UserSearchCellAdapter(ArrayList()) {
+            userSearchCellTapped(it)
         }
         binding.rvUser.adapter = userSearchAdapter
         binding.rvUser.addOnScrollListener(object: RecyclerView.OnScrollListener() {
@@ -55,6 +54,12 @@ class UserSearchFragment: Fragment() {
             }
         })
 
+    }
+
+    private fun userSearchCellTapped(username: String) {
+        val bundle = Bundle()
+        bundle.putString("login", username)
+        findNavController().navigate(R.id.action_userSearch_to_userDetails, bundle)
     }
 
     private fun setupSearchView() {
@@ -77,14 +82,13 @@ class UserSearchFragment: Fragment() {
 
     private fun observeUserSearch() {
         userSearchVM.observeUserSearchLiveData()
-            .observe(viewLifecycleOwner, object: Observer<UserSearchResultModel>{
-                override fun onChanged(t: UserSearchResultModel?) {
-                    t?.let {
-                        userSearchAdapter.setItems(ArrayList(t.items), t.query ?: "")
-                        println("Observing search result. Total: ${it.total_count}")
-                    }
+            .observe(viewLifecycleOwner
+            ) { _searchRes ->
+                _searchRes?.let { searchResult ->
+                    userSearchAdapter.setItems(ArrayList(searchResult.items), searchResult.query ?: "")
+                    println("Observing search result. Total: ${searchResult.total_count}")
                 }
-            })
+            }
     }
 
 }

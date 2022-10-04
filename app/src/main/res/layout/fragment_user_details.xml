@@ -1,16 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_user_details"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="User Details"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            >
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="centerCrop"
+                android:layout_margin="16dp"/>
+        </FrameLayout>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="name"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="username"
+            android:textSize="16sp"
+            />
+        <Button
+            android:id="@+id/btn_view_on_web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="View on web"
+            android:textAllCaps="false"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

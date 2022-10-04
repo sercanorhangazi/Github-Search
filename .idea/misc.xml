@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/fragment_user_details.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_user_details.xml" value="0.2965459140690817" />
         <entry key="app/src/main/res/layout/user_search_cell.xml" value="0.33" />
         <entry key="app/src/main/res/layout/user_search_fragment.xml" value="0.25" />
       </map>

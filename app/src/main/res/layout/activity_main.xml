@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/userSearchFragment"
+        android:id="@+id/search_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.sercanorhangazi.mvvmpractise.ui.UserSearchFragment"
-        tools:layout="@layout/user_search_fragment" />
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        tools:layout="@layout/user_search_fragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.sercanorhangazi.mvvmpractise.retrofit
 
 import com.sercanorhangazi.mvvmpractise.model.User
+import com.sercanorhangazi.mvvmpractise.model.UserDetail
 import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
 import retrofit2.Call
 import retrofit2.http.GET
@@ -18,5 +19,5 @@ interface GithubApi {
     @GET("users/{login}")
     fun getUserDetails(
         @Path("login") username: String
-    ): Call<User>
+    ): Call<UserDetail>
 }
