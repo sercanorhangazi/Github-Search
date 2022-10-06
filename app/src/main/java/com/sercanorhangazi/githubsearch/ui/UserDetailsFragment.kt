@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise.ui
+package com.sercanorhangazi.githubsearch.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -9,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.sercanorhangazi.mvvmpractise.databinding.FragmentUserDetailsBinding
-import com.sercanorhangazi.mvvmpractise.model.User
-import com.sercanorhangazi.mvvmpractise.model.UserDetail
-import com.sercanorhangazi.mvvmpractise.viewModel.UserDetailsVM
+import com.sercanorhangazi.githubsearch.databinding.FragmentUserDetailsBinding
+import com.sercanorhangazi.githubsearch.model.UserDetail
+import com.sercanorhangazi.githubsearch.viewModel.UserDetailsVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

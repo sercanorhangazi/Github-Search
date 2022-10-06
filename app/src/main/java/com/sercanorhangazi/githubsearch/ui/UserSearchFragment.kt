@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise.ui
+package com.sercanorhangazi.githubsearch.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.sercanorhangazi.mvvmpractise.R
-import com.sercanorhangazi.mvvmpractise.databinding.UserSearchFragmentBinding
-import com.sercanorhangazi.mvvmpractise.viewModel.SearchUserViewModel
+import com.sercanorhangazi.githubsearch.R
+import com.sercanorhangazi.githubsearch.databinding.UserSearchFragmentBinding
+import com.sercanorhangazi.githubsearch.viewModel.SearchUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

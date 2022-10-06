@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise
+package com.sercanorhangazi.githubsearch
 
 import org.junit.Test
 

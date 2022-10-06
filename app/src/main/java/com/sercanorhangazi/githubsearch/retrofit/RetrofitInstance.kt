@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise.retrofit
+package com.sercanorhangazi.githubsearch.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

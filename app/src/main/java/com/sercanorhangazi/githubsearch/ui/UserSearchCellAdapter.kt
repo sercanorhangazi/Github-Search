@@ -1,12 +1,12 @@
-package com.sercanorhangazi.mvvmpractise.ui
+package com.sercanorhangazi.githubsearch.ui
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.sercanorhangazi.mvvmpractise.databinding.UserSearchCellBinding
-import com.sercanorhangazi.mvvmpractise.model.User
+import com.sercanorhangazi.githubsearch.databinding.UserSearchCellBinding
+import com.sercanorhangazi.githubsearch.model.User
 
 class UserSearchCellAdapter(
     private val items: ArrayList<User>,

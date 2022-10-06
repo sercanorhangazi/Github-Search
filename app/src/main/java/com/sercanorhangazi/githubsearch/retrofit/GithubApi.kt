@@ -1,8 +1,7 @@
-package com.sercanorhangazi.mvvmpractise.retrofit
+package com.sercanorhangazi.githubsearch.retrofit
 
-import com.sercanorhangazi.mvvmpractise.model.User
-import com.sercanorhangazi.mvvmpractise.model.UserDetail
-import com.sercanorhangazi.mvvmpractise.model.UserSearchResultModel
+import com.sercanorhangazi.githubsearch.model.UserDetail
+import com.sercanorhangazi.githubsearch.model.UserSearchResultModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

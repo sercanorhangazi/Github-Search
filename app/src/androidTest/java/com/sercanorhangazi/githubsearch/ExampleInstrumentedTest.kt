@@ -1,4 +1,4 @@
-package com.sercanorhangazi.mvvmpractise
+package com.sercanorhangazi.githubsearch
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
