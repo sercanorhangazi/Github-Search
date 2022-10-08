@@ -37,7 +37,6 @@ class UserSearchFragment: Fragment() {
     }
 
     private fun setupRecyclerView() {
-
         userSearchAdapter = UserSearchCellAdapter(ArrayList()) {
             userSearchCellTapped(it)
         }
@@ -81,8 +80,7 @@ class UserSearchFragment: Fragment() {
     }
 
     private fun observeUserSearch() {
-        userSearchVM.observeUserSearchLiveData()
-            .observe(viewLifecycleOwner
+        userSearchVM.userSearchResults.observe(viewLifecycleOwner
             ) { _searchRes ->
                 _searchRes?.let { searchResult ->
                     userSearchAdapter.setItems(ArrayList(searchResult.items), searchResult.query ?: "")

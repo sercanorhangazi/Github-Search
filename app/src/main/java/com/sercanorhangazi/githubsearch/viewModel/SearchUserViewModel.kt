@@ -4,13 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.sercanorhangazi.githubsearch.retrofit.GithubApi
-import com.sercanorhangazi.githubsearch.model.UserSearchResultModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+import com.sercanorhangazi.githubsearch.model.UserSearchResultModel as UserSearchResultModel
 
 @HiltViewModel
 class SearchUserViewModel @Inject constructor(
@@ -18,6 +20,7 @@ class SearchUserViewModel @Inject constructor(
 ): ViewModel() {
 
     private var userSearchLiveData = MutableLiveData<UserSearchResultModel>()
+    var userSearchResults: LiveData<UserSearchResultModel> = userSearchLiveData
 
     private var currentQuery = ""
     private var currentPage = 1
@@ -40,25 +43,13 @@ class SearchUserViewModel @Inject constructor(
 
         Log.d("DEBUG"," - current query = $currentQuery , current page : $currentPage, query: $query, page : $page")
 
-        api.getUserSearchResults(query, page).enqueue(object: Callback<UserSearchResultModel> {
-            override fun onResponse(
-                call: Call<UserSearchResultModel>,
-                response: Response<UserSearchResultModel>
-            ) {
-                Log.d("Request url", call.request().url().toString())
-                response.body()?.let { result ->
-                    result.query = currentQuery
-                    userSearchLiveData.value = result
-                }
-            }
+        viewModelScope.launch {
+            val results = api.getUserSearchResults(query, page)
+            results.query = currentQuery
+            results.page = currentPage
+            userSearchLiveData.value = results
+        }
 
-            override fun onFailure(call: Call<UserSearchResultModel>, t: Throwable) {
-                Log.d("DEBUG", "Couldn't fetch user search result : ${t.message.toString()}")
-            }
-        })
     }
 
-    fun observeUserSearchLiveData(): LiveData<UserSearchResultModel> {
-        return userSearchLiveData
-    }
 }

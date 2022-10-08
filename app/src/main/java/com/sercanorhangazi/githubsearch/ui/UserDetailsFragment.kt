@@ -48,7 +48,7 @@ class UserDetailsFragment: Fragment() {
     }
 
     private fun observeUserDetails() {
-        userDetailsVM.observeUserDetailsLiveData().observe(viewLifecycleOwner) { _user ->
+        userDetailsVM.userDetails.observe(viewLifecycleOwner) { _user ->
             _user?.let { user ->
                 setUserDetails(user)
             }

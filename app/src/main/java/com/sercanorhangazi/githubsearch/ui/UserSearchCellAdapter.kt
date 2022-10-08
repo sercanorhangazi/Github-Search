@@ -3,10 +3,12 @@ package com.sercanorhangazi.githubsearch.ui
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sercanorhangazi.githubsearch.databinding.UserSearchCellBinding
 import com.sercanorhangazi.githubsearch.model.User
+import com.sercanorhangazi.githubsearch.model.UserSearchResultModel
 
 class UserSearchCellAdapter(
     private val items: ArrayList<User>,

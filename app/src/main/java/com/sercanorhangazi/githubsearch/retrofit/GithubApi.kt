@@ -10,13 +10,13 @@ import retrofit2.http.Query
 interface GithubApi {
 
     @GET("search/users")
-    fun getUserSearchResults(
+    suspend fun getUserSearchResults(
         @Query("q") query: String,
         @Query("page") page: Int
-    ): Call<UserSearchResultModel>
+    ): UserSearchResultModel
 
     @GET("users/{login}")
-    fun getUserDetails(
+    suspend fun getUserDetails(
         @Path("login") username: String
-    ): Call<UserDetail>
+    ): UserDetail
 }
