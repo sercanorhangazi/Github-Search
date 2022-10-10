@@ -3,12 +3,10 @@ package com.sercanorhangazi.githubsearch.ui
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sercanorhangazi.githubsearch.databinding.UserSearchCellBinding
 import com.sercanorhangazi.githubsearch.model.User
-import com.sercanorhangazi.githubsearch.model.UserSearchResultModel
 
 class UserSearchCellAdapter(
     private val items: ArrayList<User>,
@@ -22,7 +20,7 @@ class UserSearchCellAdapter(
     }
 
     fun setItems(items: ArrayList<User>, query: String) {
-        Log.d("DEBUG", "setItems: $currentQuery , $query")
+        Log.d("DEBUG", "setItems: for query : $query . Current one is $currentQuery")
         if (allItems.size >= items.size && query == currentQuery) {
             Log.d("DEBUG", "${allItems.size} <= ${items.size} Append items")
             addItems(items)
@@ -34,7 +32,7 @@ class UserSearchCellAdapter(
         }
     }
 
-    fun addItems(items: ArrayList<User>) {
+    private fun addItems(items: ArrayList<User>) {
         allItems.addAll(items)
         notifyDataSetChanged()
     }
@@ -49,8 +47,8 @@ class UserSearchCellAdapter(
             binding.apply {
                 Glide.with(this.root).load(user.avatar_url).into(ivAvatar)
 
-                val message = user.login
-                binding.tvUsername.text =  message
+                val username = user.login
+                binding.tvUsername.text =  "$pos. $username"
             }
         }
     }
