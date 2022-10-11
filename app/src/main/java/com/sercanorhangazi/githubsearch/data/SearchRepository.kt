@@ -18,7 +18,6 @@ class SearchRepository @Inject constructor(
             searchDao.getSearchResultsFor(searchQuery, page)
         },
         fetch = {
-            delay(1000)
             Log.d("DEBUG", "------------------------------------------------")
             Log.d("DEBUG", "getSearchResults: $searchQuery, $page")
             Log.d("DEBUG", "------------------------------------------------")
