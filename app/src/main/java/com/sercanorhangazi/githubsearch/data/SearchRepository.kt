@@ -1,38 +1,25 @@
 package com.sercanorhangazi.githubsearch.data
 
 import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import androidx.room.withTransaction
-import com.sercanorhangazi.githubsearch.retrofit.GithubApi
+import com.sercanorhangazi.githubsearch.api.GithubApi
 import com.sercanorhangazi.githubsearch.util.networkBoundResource
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class SearchRepository @Inject constructor(
-    private val api: GithubApi,
-    private val db: SearchDatabase
+    private val githubApi: GithubApi,
+    private val searchDatabase: SearchDatabase
 ) {
-    private val searchDao = db.searchDao()
+    private val searchDao = searchDatabase.searchDao()
 
-    fun getSearchResults(searchQuery: String, page: Int) = networkBoundResource(
-        query = {
-            searchDao.getSearchResultsFor(searchQuery, page)
-        },
-        fetch = {
-            Log.d("DEBUG", "------------------------------------------------")
-            Log.d("DEBUG", "getSearchResults: $searchQuery, $page")
-            Log.d("DEBUG", "------------------------------------------------")
-            val searchResult = api.getUserSearchResults(searchQuery, page)
-            searchResult.apply {
-                this.query = searchQuery
-                this.page = page
-            }
-            searchResult
-        },
-        saveFetchResult = { searchResult ->
-            db.withTransaction {
-                searchDao.deleteResultsFor(searchQuery, page)
-                searchDao.insertSearchResult(searchResult)
-            }
-        }
-    )
+    fun getSearchResultsPaged(query: String): Flow<PagingData<SearchUser>> =
+        Pager(
+            config = PagingConfig(pageSize = 10, maxSize = 200),
+            remoteMediator = SearchNewsRemoteMediator(query, githubApi, searchDatabase),
+            pagingSourceFactory = { searchDao.getSearchResultUsersPaged(query) }
+        ).flow
 }

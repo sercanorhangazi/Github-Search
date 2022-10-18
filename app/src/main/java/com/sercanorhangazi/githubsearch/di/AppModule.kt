@@ -3,7 +3,7 @@ package com.sercanorhangazi.githubsearch.di
 import android.app.Application
 import androidx.room.Room
 import com.sercanorhangazi.githubsearch.data.SearchDatabase
-import com.sercanorhangazi.githubsearch.retrofit.RetrofitInstance
+import com.sercanorhangazi.githubsearch.api.RetrofitInstance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

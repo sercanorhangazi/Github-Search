@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sercanorhangazi.githubsearch.model.UserDetail
-import com.sercanorhangazi.githubsearch.retrofit.GithubApi
+import com.sercanorhangazi.githubsearch.api.GithubApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

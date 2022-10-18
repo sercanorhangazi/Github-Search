@@ -1,8 +1,6 @@
-package com.sercanorhangazi.githubsearch.retrofit
+package com.sercanorhangazi.githubsearch.api
 
 import com.sercanorhangazi.githubsearch.model.UserDetail
-import com.sercanorhangazi.githubsearch.model.UserSearchResultModel
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -10,10 +8,11 @@ import retrofit2.http.Query
 interface GithubApi {
 
     @GET("search/users")
-    suspend fun getUserSearchResults(
+    suspend fun searchUser(
         @Query("q") query: String,
-        @Query("page") page: Int
-    ): UserSearchResultModel
+        @Query("page") page: Int,
+        @Query("per_page") pageSize: Int
+    ): UserSearchResponse
 
     @GET("users/{login}")
     suspend fun getUserDetails(

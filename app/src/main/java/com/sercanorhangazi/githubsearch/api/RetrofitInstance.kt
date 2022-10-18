@@ -1,4 +1,4 @@
-package com.sercanorhangazi.githubsearch.retrofit
+package com.sercanorhangazi.githubsearch.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userSearchFragment"
-        android:name="com.sercanorhangazi.githubsearch.ui.UserSearchFragment"
+        android:name="com.sercanorhangazi.githubsearch.features.search.UserSearchFragment"
         android:label="UserSearchFragment"
         tools:layout="@layout/user_search_fragment"
         >
