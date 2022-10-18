@@ -9,16 +9,13 @@ import android.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.sercanorhangazi.githubsearch.R
 import com.sercanorhangazi.githubsearch.databinding.UserSearchFragmentBinding
-import com.sercanorhangazi.githubsearch.model.UserSearchResultModel
 import com.sercanorhangazi.githubsearch.util.Resource
 import com.sercanorhangazi.githubsearch.viewModel.SearchUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 
 @AndroidEntryPoint
 class UserSearchFragment : Fragment() {
@@ -39,6 +36,13 @@ class UserSearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupSearchView()
         setupRecyclerView()
+
+        if (userSearchVM.userSearchResults?.value?.data?.items.isNullOrEmpty()) {
+            Log.d("DEBUG", "onViewCreated: it is null")
+        } else {
+            Log.d("DEBUG", "onViewCreated: its not null")
+            observeUserSearch()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -71,7 +75,7 @@ class UserSearchFragment : Fragment() {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 p0?.let {
                     val query = p0.trim()
-                    val searchFlow = userSearchVM.getUserSearchResult(query)
+                    userSearchVM.getUserSearchResult(query)
                 }
                 binding.svUsername.clearFocus()
                 observeUserSearch()
@@ -101,6 +105,11 @@ class UserSearchFragment : Fragment() {
             }
 
             binding.apply {
+                when (_res) {
+                    is Resource.Error -> Log.d("DEBUG", "observeUserSearch: Error")
+                    is Resource.Loading -> Log.d("DEBUG", "observeUserSearch: Loading")
+                    is Resource.Success -> Log.d("DEBUG", "observeUserSearch: Success")
+                }
                 pbSearch.isVisible = _res is Resource.Loading && _res.data?.items.isNullOrEmpty()
                 tvErrorMessage.isVisible = _res is Resource.Error && _res.data?.items.isNullOrEmpty()
                 tvErrorMessage.text = _res.error?.localizedMessage
