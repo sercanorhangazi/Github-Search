@@ -57,7 +57,12 @@ class UserDetailsFragment: Fragment() {
 
     private fun setUserDetails(user: UserDetail) {
         binding.apply {
-            Glide.with(this@UserDetailsFragment).load(user.avatar_url).into(ivAvatar)
+            //Glide.with(this@UserDetailsFragment).load(user.avatar_url).into(ivAvatar)
+            val images = mutableListOf(user.avatar_url, user.avatar_url, user.avatar_url).toList()
+            val imageAdapter = UserImageViewPagerAdapter()
+            imageAdapter.submitList(images)
+            vpUserImage.adapter = imageAdapter
+
             tvName.text = user.name
             tvUsername.text = "@${user.login}"
 

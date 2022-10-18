@@ -15,8 +15,10 @@
         android:gravity="center"
         >
         <FrameLayout
+            android:id="@+id/user_image_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             >
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -35,6 +37,11 @@
                     />
             </androidx.cardview.widget.CardView>
         </FrameLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_user_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
