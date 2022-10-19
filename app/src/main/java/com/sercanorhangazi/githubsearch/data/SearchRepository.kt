@@ -1,12 +1,9 @@
 package com.sercanorhangazi.githubsearch.data
 
-import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.room.withTransaction
 import com.sercanorhangazi.githubsearch.api.GithubApi
-import com.sercanorhangazi.githubsearch.util.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -2,8 +2,6 @@ package com.sercanorhangazi.githubsearch.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.sercanorhangazi.githubsearch.pojo.SearchUserConverter
 
 @Database(entities = [SearchResult::class, SearchUser::class, SearchQueryRemoteKey::class],
     version = 1,

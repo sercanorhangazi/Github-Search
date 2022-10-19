@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.sercanorhangazi.githubsearch.databinding.FragmentUserDetailsBinding
 import com.sercanorhangazi.githubsearch.model.UserDetail
 import com.sercanorhangazi.githubsearch.viewModel.UserDetailsVM

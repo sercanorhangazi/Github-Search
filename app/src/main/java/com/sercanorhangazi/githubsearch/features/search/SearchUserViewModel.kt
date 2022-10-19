@@ -1,13 +1,9 @@
 package com.sercanorhangazi.githubsearch.features.search
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.sercanorhangazi.githubsearch.data.SearchRepository
-import com.sercanorhangazi.githubsearch.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.emptyFlow

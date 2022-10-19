@@ -79,7 +79,7 @@ class UserSearchFragment: Fragment(R.layout.user_search_fragment), MenuProvider 
 
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 newsArticleAdapter.loadStateFlow
-                    .collect() { loadState ->
+                    .collect { loadState ->
                         when (val refresh = loadState.mediator?.refresh) {
                             LoadState.Loading -> {
                                 tvError.isVisible = false
