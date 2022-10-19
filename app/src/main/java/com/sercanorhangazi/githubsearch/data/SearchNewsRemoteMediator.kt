@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.sercanorhangazi.githubsearch.api.GithubApi
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -30,6 +31,7 @@ class SearchNewsRemoteMediator(
         }
 
         try {
+            delay(1000)
             val response = githubApi.searchUser(searchQuery, page, state.config.pageSize)
             val serverSearchResults = response.items
 

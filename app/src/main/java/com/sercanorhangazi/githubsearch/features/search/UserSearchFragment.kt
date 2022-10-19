@@ -1,6 +1,7 @@
 package com.sercanorhangazi.githubsearch.features.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -39,7 +40,11 @@ class UserSearchFragment: Fragment(R.layout.user_search_fragment), MenuProvider 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        newsArticleAdapter = SearchUserPagingAdapter()
+        newsArticleAdapter = SearchUserPagingAdapter(
+            onItemClick = { user ->
+                Log.d("DEBUG", "onViewCreated: ${user.username}")
+            }
+        )
 
         binding.apply {
             recyclerView.apply {

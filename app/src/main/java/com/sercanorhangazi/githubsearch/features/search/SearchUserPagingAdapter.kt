@@ -10,7 +10,9 @@ import com.sercanorhangazi.githubsearch.R
 import com.sercanorhangazi.githubsearch.data.SearchUser
 import com.sercanorhangazi.githubsearch.databinding.UserSearchCellBinding
 
-class SearchUserPagingAdapter: PagingDataAdapter<SearchUser, SearchUserPagingAdapter.SearchUserViewHolder>(SearchUserComparator())  {
+class SearchUserPagingAdapter(
+    private val onItemClick: (SearchUser) -> Unit
+): PagingDataAdapter<SearchUser, SearchUserPagingAdapter.SearchUserViewHolder>(SearchUserComparator())  {
 
     override fun onBindViewHolder(holder: SearchUserViewHolder, position: Int) {
         val user = getItem(position)
@@ -21,10 +23,18 @@ class SearchUserPagingAdapter: PagingDataAdapter<SearchUser, SearchUserPagingAda
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchUserViewHolder {
         val binding = UserSearchCellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchUserViewHolder(binding)
+        return SearchUserViewHolder(binding,
+            onItemClick = { position ->
+                val user = getItem(position)
+                if (user != null) {
+                    onItemClick(user)
+                }
+            })
     }
 
-    inner class SearchUserViewHolder(private val binding: UserSearchCellBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SearchUserViewHolder(private val binding: UserSearchCellBinding,
+                                     private val onItemClick: (Int) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: SearchUser) {
             binding.apply {
                 tvUsername.text = user.username
@@ -32,6 +42,17 @@ class SearchUserPagingAdapter: PagingDataAdapter<SearchUser, SearchUserPagingAda
                     .load(user.avatarUrl)
                     .error(R.mipmap.ic_launcher)
                     .into(ivAvatar)
+            }
+        }
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemClick(position)
+                    }
+                }
             }
         }
     }
