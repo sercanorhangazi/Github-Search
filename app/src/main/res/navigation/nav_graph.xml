@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/userDetailsFragment"
-        android:name="com.sercanorhangazi.githubsearch.ui.UserDetailsFragment"
+        android:name="com.sercanorhangazi.githubsearch.features.userDetail.UserDetailsFragment"
         android:label="UserDetailsFragment"
         tools:layout="@layout/fragment_user_details">
         <argument

@@ -1,15 +1,19 @@
-package com.sercanorhangazi.githubsearch.ui
+package com.sercanorhangazi.githubsearch.features.userDetail
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import com.sercanorhangazi.githubsearch.R
 import com.sercanorhangazi.githubsearch.databinding.FragmentUserDetailsBinding
-import com.sercanorhangazi.githubsearch.model.UserDetail
+import com.sercanorhangazi.githubsearch.data.UserDetail
+import com.sercanorhangazi.githubsearch.util.Resource
 import com.sercanorhangazi.githubsearch.viewModel.UserDetailsVM
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,17 +22,11 @@ class UserDetailsFragment: Fragment() {
 
     private lateinit var binding: FragmentUserDetailsBinding
     private val userDetailsVM by viewModels<UserDetailsVM>()
-    private var username: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let { _bundle ->
-            val login = _bundle.getString("login")
-            login?.let { _login ->
-                username = _login
-            }
-        }
+    private val username: String? by lazy {
+        arguments?.getString(getString(R.string.NAV_PARAM_USER_DETAILS))
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,9 +45,21 @@ class UserDetailsFragment: Fragment() {
     }
 
     private fun observeUserDetails() {
-        userDetailsVM.userDetails.observe(viewLifecycleOwner) { _user ->
-            _user?.let { user ->
-                setUserDetails(user)
+        userDetailsVM.userDetails.observe(viewLifecycleOwner) { response ->
+            binding.apply {
+                progressBar.isVisible = response is Resource.Loading
+                main.isVisible = response is Resource.Success
+                tvError.isVisible = response is Resource.Error
+
+                when (response) {
+                    is Resource.Error -> {
+                        tvError.text = response.error?.localizedMessage ?: getString(R.string.unknown_error_occurred)
+                    }
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        setUserDetails(response.data!!)
+                    }
+                }
             }
         }
     }
@@ -57,16 +67,16 @@ class UserDetailsFragment: Fragment() {
     private fun setUserDetails(user: UserDetail) {
         binding.apply {
             //Glide.with(this@UserDetailsFragment).load(user.avatar_url).into(ivAvatar)
-            val images = mutableListOf(user.avatar_url, user.avatar_url, user.avatar_url).toList()
+            val images = mutableListOf(user.avatarUrl, user.avatarUrl, user.avatarUrl).toList()
             val imageAdapter = UserImageViewPagerAdapter()
             imageAdapter.submitList(images)
             vpUserImage.adapter = imageAdapter
 
             tvName.text = user.name
-            tvUsername.text = "@${user.login}"
+            tvUsername.text = "@${user.username}"
 
             btnViewOnWeb.setOnClickListener {
-                var uri = user.html_url
+                var uri = user.htmlUrl
                 val i = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
                 startActivity(i)
             }

@@ -1,8 +1,18 @@
-package com.sercanorhangazi.githubsearch.model
+package com.sercanorhangazi.githubsearch.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "user_details")
 data class UserDetail(
-    val avatar_url: String,
-    val bio: String,
+    @PrimaryKey(autoGenerate = false) val username: String,
+    val avatarUrl: String,
+    val htmlUrl: String,
+    val name: String
+)
+
+/*
+val bio: String,
     val blog: String,
     val company: Any,
     val created_at: String,
@@ -15,11 +25,8 @@ data class UserDetail(
     val gists_url: String,
     val gravatar_id: String,
     val hireable: Any,
-    val html_url: String,
     val id: Int,
     val location: Any,
-    val login: String,
-    val name: String,
     val node_id: String,
     val organizations_url: String,
     val public_gists: Int,
@@ -33,4 +40,4 @@ data class UserDetail(
     val type: String,
     val updated_at: String,
     val url: String
-)
+ */

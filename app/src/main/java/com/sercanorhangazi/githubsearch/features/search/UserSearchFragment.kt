@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sercanorhangazi.githubsearch.R
@@ -42,7 +43,9 @@ class UserSearchFragment: Fragment(R.layout.user_search_fragment), MenuProvider 
 
         newsArticleAdapter = SearchUserPagingAdapter(
             onItemClick = { user ->
-                Log.d("DEBUG", "onViewCreated: ${user.username}")
+                val bundle = Bundle()
+                bundle.putString(getString(R.string.NAV_PARAM_USER_DETAILS), user.username)
+                findNavController().navigate(R.id.action_userSearch_to_userDetails, bundle)
             }
         )
 

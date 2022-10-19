@@ -1,4 +1,4 @@
-package com.sercanorhangazi.githubsearch.ui
+package com.sercanorhangazi.githubsearch.features.userDetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sercanorhangazi.githubsearch.databinding.ImageViewPagerItemBinding
 
-class UserImageViewPagerAdapter : ListAdapter<String, UserImageViewPagerAdapter.UserImageViewHolder>(UserImageComparator()) {
+class UserImageViewPagerAdapter : ListAdapter<String, UserImageViewPagerAdapter.UserImageViewHolder>(
+    UserImageComparator()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserImageViewHolder {
         val binding = ImageViewPagerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
