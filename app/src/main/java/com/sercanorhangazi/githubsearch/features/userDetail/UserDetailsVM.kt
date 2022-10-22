@@ -1,4 +1,4 @@
-package com.sercanorhangazi.githubsearch.viewModel
+package com.sercanorhangazi.githubsearch.features.userDetail
 
 import android.util.Log
 import androidx.lifecycle.*
@@ -24,7 +24,6 @@ class UserDetailsVM @Inject constructor(
     fun getUserDetails(username: String) {
         viewModelScope.launch {
             repository.getUserDetails(username).collect { response ->
-                Log.d("DEBUG", "UserDetailsVM: ${response.data?.username}")
                 userDetailsResult.value = response
             }
         }

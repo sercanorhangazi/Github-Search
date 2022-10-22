@@ -3,7 +3,6 @@ package com.sercanorhangazi.githubsearch.features.userDetail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,8 @@ import com.sercanorhangazi.githubsearch.R
 import com.sercanorhangazi.githubsearch.databinding.FragmentUserDetailsBinding
 import com.sercanorhangazi.githubsearch.data.UserDetail
 import com.sercanorhangazi.githubsearch.util.Resource
-import com.sercanorhangazi.githubsearch.viewModel.UserDetailsVM
 import dagger.hilt.android.AndroidEntryPoint
+import me.relex.circleindicator.CircleIndicator3
 
 @AndroidEntryPoint
 class UserDetailsFragment: Fragment() {
@@ -71,6 +70,7 @@ class UserDetailsFragment: Fragment() {
             val imageAdapter = UserImageViewPagerAdapter()
             imageAdapter.submitList(images)
             vpUserImage.adapter = imageAdapter
+            circleIndicator.setViewPager(vpUserImage)
 
             tvName.text = user.name
             tvUsername.text = "@${user.username}"

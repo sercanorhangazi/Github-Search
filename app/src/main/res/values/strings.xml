@@ -9,6 +9,7 @@
     <string name="refresh">Refresh</string>
     <string name="no_results_found">No results found</string>
     <string name="search_instructions">Tap the magnifying glass to start searching</string>
+    <string name="btn_view_on_web">View on web</string>
 
     <string name="NAV_PARAM_USER_DETAILS">NAV_PARAM_USER_DETAILS</string>
 </resources>
