@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.sercanorhangazi.githubsearch.R
+import com.sercanorhangazi.githubsearch.base.BaseFragment
 import com.sercanorhangazi.githubsearch.databinding.FragmentUserDetailsBinding
 import com.sercanorhangazi.githubsearch.data.UserDetail
 import com.sercanorhangazi.githubsearch.util.Resource
@@ -17,15 +18,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import me.relex.circleindicator.CircleIndicator3
 
 @AndroidEntryPoint
-class UserDetailsFragment: Fragment() {
+class UserDetailsFragment: BaseFragment() {
 
     private lateinit var binding: FragmentUserDetailsBinding
     private val userDetailsVM by viewModels<UserDetailsVM>()
     private val username: String? by lazy {
         arguments?.getString(getString(R.string.NAV_PARAM_USER_DETAILS))
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +40,7 @@ class UserDetailsFragment: Fragment() {
             userDetailsVM.getUserDetails(username)
             observeUserDetails()
         }
+        snackBar("This snackbar is from base fragment")
     }
 
     private fun observeUserDetails() {
