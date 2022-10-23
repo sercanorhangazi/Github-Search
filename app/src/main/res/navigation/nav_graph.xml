@@ -24,4 +24,9 @@
             android:name="login"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/gridLayoutFragment"
+        android:name="com.sercanorhangazi.githubsearch.features.gridLayout.GridLayoutFragment"
+        android:label="Grid"
+        tools:layout="@layout/fragment_grid_layout"/>
 </navigation>

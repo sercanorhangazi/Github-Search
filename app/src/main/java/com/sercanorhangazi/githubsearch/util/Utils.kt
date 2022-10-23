@@ -3,6 +3,8 @@ package com.sercanorhangazi.githubsearch.util
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
 fun Fragment.showSnackBar(
@@ -36,3 +38,4 @@ inline fun SearchView.onQueryTextSubmit(crossinline listener: (String) -> Unit) 
 
     })
 }
+
